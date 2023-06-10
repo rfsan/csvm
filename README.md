@@ -132,3 +132,15 @@ CSVM is a file format that allows you to save multiple tables, add comments, and
 
 ## Read a `.csvm` file 
 
+Installation `pip install csvm`
+
+```python
+import csvm
+
+# Load TableCollection (if multiple tables) or Table (if one table)
+tc = csvm.read_csvm("pink_floyd.csvm") 
+print(tc.tables)
+members = tc['members'] # get Table
+# Access Table attributes if exist (i.e. Table.columns, Table.column_meta, Table.table_meta, Table.data, Table.name)
+print(members.data) 
+```
