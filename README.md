@@ -17,11 +17,16 @@ CSVM is a file format that allows you to save multiple tables, add comments, and
     Nick,Mason,drums
     ```
 
-    To transform it into a `.csvm` add the following two sections
-
+    To transform it into a `.csvm` you add **table attributes**. Tha available table attributes are:
+    
     - `[_columns_]` to define the column names
     - `[_data_]` to define the tabular data
-
+    - `[_table_meta_.any_key.with_nested_keys]` to add table metadata
+    - `[_columns_meta_.any_key.with_nested_keys]` to add column metadata. 
+    
+    
+    For now we add the attributes `_columns_` and `_data`
+    
     ```
     [_columns_]
     first_name,last_name,instrument
@@ -34,6 +39,8 @@ CSVM is a file format that allows you to save multiple tables, add comments, and
     ```
 
 2. Add comments and blank lines
+
+    Every line that starts with a `#` is ignored when parsing the file
 
     ```
     # Pink Floyd band members
@@ -53,8 +60,10 @@ CSVM is a file format that allows you to save multiple tables, add comments, and
 
     ```
     # Pink Floyd band members
+    
     [_table_meta_.reference]
     "https://en.wikipedia.org/wiki/Pink_Floyd#Band_members"
+    
     [_columns_]
     first_name,last_name,instrument
 
@@ -70,10 +79,13 @@ CSVM is a file format that allows you to save multiple tables, add comments, and
 
     ```
     # Pink Floyd band members
+    
     [_table_meta_.reference]
     "https://en.wikipedia.org/wiki/Pink_Floyd#Band_members"
+    
     [_column_meta_.unique]
-    false,false,true
+    true,true,false
+    
     [_columns_]
     first_name,last_name,instrument
 
@@ -90,11 +102,14 @@ CSVM is a file format that allows you to save multiple tables, add comments, and
     If you want to save more than one table you must use a **namespace** for each table. 
 
     ```
-    # Pink Floyd band members
+    # Table 1 - Pink Floyd band members
+    
     [members._table_meta_.reference]
     "https://en.wikipedia.org/wiki/Pink_Floyd#Band_members"
+    
     [members._column_meta_.unique]
-    false,false,true
+    true,true,false
+    
     [members._columns_]
     first_name,last_name,instrument
 
@@ -104,9 +119,14 @@ CSVM is a file format that allows you to save multiple tables, add comments, and
     Roger,Waters,"bass, vocals"
     Richard,Wright,"keyboards, vocals"
     Nick,Mason,drums
+    
+    # Table 2 - Pink Floyd albums
 
     [albums._columns_]
+    name,year
     [albums._data_]
+    Animals,1997
+    "The Dark Side of the Moon",1973
     ```
 
 
