@@ -6,41 +6,9 @@ build-backend = "setuptools.build_meta"
 name = "csvm"
 version = "0.0.1"
 description = ""
-requires-python = ""
+requires-python = ">=3.8"
 readme = "README.md"
 license.file = "LICENSE"
-authors = [
-  { name = "Rafael Sanabria", email = "rafael.d.sanabria@gmail.com" }
-]
-dependencies = [
-  
-]
+authors = [{ name = "Rafael Sanabria", email = "rafael.d.sanabria@gmail.com" }]
+dependencies = []
 classifiers = []
-
-[project.optional-dependencies]
-test = [
-  "pytest >= 7.3.1",
-  "pytest-cov >= 4.0.0"
-]
-
-[project.scripts]
-csvm = "csvm.cli:main"
-
-[tool.pytest.ini_options]
-addopts = "--cov=csvm --cov-branch --cov-report term-missing"
-testpaths = ["tests"]
-
-[tool.tox]
-legacy_tox_ini = """
-  [tox]
-  min_version = 4.0
-  env_list = py{39,310,311}
-
-  [testenv]
-  deps = 
-    pytest
-    pytest-cov
-  commands = pytest
-
-  []
-"""
