@@ -1,0 +1,10 @@
+.venv
+.vscode
+notebooks
+test
+.python-version
+.coverage
+.tox
+.pytest_cache
+*.egg-info
+__pycache__*
