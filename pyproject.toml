@@ -4,11 +4,38 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "csvm"
-version = "0.0.1"
+dynamic = ["version"]
 description = ""
+keywords = []
 requires-python = ">=3.8"
 readme = "README.md"
-license.file = "LICENSE"
+license = { text = "MIT License" }
 authors = [{ name = "Rafael Sanabria", email = "rafael.d.sanabria@gmail.com" }]
 dependencies = []
 classifiers = []
+
+[project.urls]
+Repository = "https://github.com/rfsan/csvm"
+
+[project.optional-dependencies]
+tests = [
+    "pytest>=7.4.0"
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "csvm.__version__"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.tox]
+legacy_tox_ini = """
+  [tox]
+  min_version = 4.0
+  env_list = py39, py310, py311
+
+  [testenv]
+  deps = 
+    .[tests]
+  commands = pytest
+"""
