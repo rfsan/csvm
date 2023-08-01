@@ -18,24 +18,31 @@ classifiers = []
 Repository = "https://github.com/rfsan/csvm"
 
 [project.optional-dependencies]
-tests = [
-    "pytest>=7.4.0"
-]
+tests = ["pytest>=7.4.0"]
+formatter = ["black>=23.7.0"]
+
 
 [tool.setuptools.dynamic]
-version = {attr = "csvm.__version__"}
+version = { attr = "csvm.__version__" }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.black]
+line-length = 100
 
 [tool.tox]
 legacy_tox_ini = """
   [tox]
   min_version = 4.0
-  env_list = py39, py310, py311
+  env_list = py39, py310, py311, formatter
 
   [testenv]
-  deps = 
-    .[tests]
+  deps = .[tests]
   commands = pytest
+
+  [testenv:formatter]
+  skip_install = true
+  deps = .[formatter]
+  commands = black {posargs: src tests}
 """

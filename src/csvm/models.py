@@ -1,7 +1,5 @@
 class Table:
-    def __init__(
-        self, name=None, columns=None, data=None, meta=None, column_meta=None
-    ) -> None:
+    def __init__(self, name=None, columns=None, data=None, meta=None, column_meta=None) -> None:
         self.name = name
         self.columns = columns
         self.data = data
